@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta chearset="UTF-8">
+	<title>Tarea-5</title>
+	<link rel="stylesheet" href="stilos.css">
+</head>
+<body>
+	<h1 class="main">Tarea5</h1>
+	<div class="menu-fixed">
+		<ul class="menu">
+			<li><a href="#ejemplo1">Enunciado 1</a></li>
+			<li><a href="#ejemplo2">Enunciado 2</a></li>
+			<li><a href="#ejemplo3">Enunciado 3</a></li>
+			<li><a href="#ejemplo4">Enunciado 4</a></li>
+			<li><a href="#ejemplo5">Enunciado 5</a></li>
+		</ul>
+		
+	</div>
+	<hr>
+	<div class="main" id="ejemplo1" >
+		<h3>Enunciado 1</h3>
+		<p>1. Realizar un programa en php que a traves de un formulario pida un numero y dibuje una tabla de una columna con el numero de filas indicado.</p>
+
+		<form action="01.php" method="POST">
+			<label for="num">Introducir un numero:</label>
+			<input type="number" name="num" min="1">
+			<input type="submit"  value="Enviar">
+		</form>
+	</div>
+<hr>
+<div class="main" id="ejemplo 2">
+	<h3>Enunciado 2</h3>
+	<p>
+		2. Realizar un programa en php que a traves de un formulario que pida dos numeros u¿y dibuje una tabla de multiplicar con el numero de celdas y el tamaño indicado.
+	</p>
+	<form action="02.php" method="POST">
+		<label for="filas">N° de filas:</label>
+		<input type="text" name="filas" value="4">
+		<label for="altura">Altura:</label>
+		<input type="text" name="altura" vale="35">
+		<label for="columnas">N° de columnas:</label>
+		<input type="text" name="columnas" value="7">
+		<label for="anchura">Anchura: </label>
+		<input type="text" name="anchura" value="30">
+		<input type="submit" value="Enviar">
+	</form>
+</div>
+</body>
+</html>

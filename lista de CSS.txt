@@ -1,0 +1,67 @@
+CSS
+ul.menu{
+	clear: both;
+	float: left; 
+	width: 100px; /*largo */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-left: 1px solid #7C7C7C; /*borde izquierdo*/
+	
+}
+	ul.menu li a:link, ul.menu li a:visited {
+padding: .3em; /*anchura */
+display: block; /* centralizar*/
+text-decoration: none; /* quitar lineas de enlace */
+color: #333;
+background: #F4F4F4; /* color */
+border-top:1px solid #7C7C7C; /*resaltar las lineas*/
+border-right:1px solid #7C7C7C; /* borde derecho */
+border-bottom:1px solid #9C9C9C; /* resaltar las lineas*/
+}
+ul.menu li a:hover{ /* el color donde marca el mouse */
+	background-color: #FC0;
+}
+HORIZONTAL
+ul.menu li{
+
+	display: inline;
+	float: left;
+}
+maqueta
+margin-left: auto; /*centralizar*/
+	margin-right: auto;	o tambien  margin: 0 auto; 
+height: 95px; /* anchura*/
+float: right /*flota a la derecha*/
+float: left /* floa a la izquierda */
+
+
+Maqueta Jhordan
+
+*{	
+	margin: 0;    /centraliza todo
+	border:0;
+}
+
+
+
+/Para agregar Imagen en toda la pantalla centreado
+body{
+	background-image: url(imagenes/GAME1.JPG);
+	margin: 0;
+	background-size: 100vw 100vh;
+	background-attachment: fixed;
+
+}
+
+tipo de letra
+h1{
+	height: 100px;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 50px;
+	text-align: center;
+	text-shadow: 0px 6px 7px black; 
+	font:40px solid black; /Tamaño
+	font-family: Lucida Calligraphy;/Tipo de letra
+}
