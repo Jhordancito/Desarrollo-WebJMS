@@ -32,7 +32,7 @@ $resultado=$con->query($sql);
 				<td><?php echo $fila['estado'];?></td>
 				<td><?php echo $fila['fecha'];?></td>
 				<td>
-					<a href="editar.php"><img src="img/editar.png" width="15px"> Editar</a> 
+					<a href="formeditar.php?id=<?php echo $fila['id'];?>"><img src="img/editar.png" width="15px"> Editar</a> 
 					<a href="eliminar.php?id=<?php echo $fila['id'];?>"><img src="img/eliminar.png" width="15px"> Eliminar</a>
 				</td>
 			<tr>
