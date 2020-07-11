@@ -1,3 +1,5 @@
+<?php include ("comprobar.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,12 +26,14 @@
 <body>
 <?php include("conexion.php");
 $sql="select persona.id,fotografia,nombre,apellidos,edad,sexo,procedencia,celular,estado,fecha          from persona left join procedencia on persona.idprocedencia=procedencia.id";
-echo $sql;   //Imprimimos para ver si esta bien
+//echo $sql;   //Imprimimos para ver si esta bien
+echo "Usted esta Auntenticado como ".$_SESSION['correo'];
 $resultado=$con->query($sql);
 ?>
 <div class="div">
 	
 </div>
+<a href="cerrar.php">Cerrar Session </a>
 <center>
 <table class="tabla" border="1px">
 	<th class="th">Fotografia</th>
@@ -37,8 +41,8 @@ $resultado=$con->query($sql);
 	<th class="th">Apellidos</th>
 	<th class="th">Edad</th>
 	<th class="th">Sexo</th>
-	<th class="th">Procedencia</th>
 	<th class="th">Celular</th>
+	<th class="th">Procedencia</th>
 	<th class="th">Estado</th>
 	<th class="th">Fecha</th>
 	<th class="th">Operaciones</th>
@@ -49,7 +53,7 @@ $resultado=$con->query($sql);
 				?>
 			
 			<tr>
-				<td><img src="<?php echo $fila['fotografia'];?>" alt=""></td>
+				<td><img src="<?php echo 'img/'.$fila['fotografia'];?>"alt="" width="60"></td>
 				<td><?php echo $fila['nombre'];?></td>
 				<td><?php echo $fila['apellidos'];?></td>
 				<td><?php echo $fila['edad'];?></td>
@@ -79,8 +83,11 @@ $resultado=$con->query($sql);
 				;?></td>
 				<td><?php echo $fila['fecha'];?></td>
 				<td>
+				<?php if ($_SESSION['nivel']==1)
+				{?>
 					<a href="formeditar.php?id=<?php echo $fila['id'];?>"><img src="img/editar.png" width="15px"> Editar</a> 
 					<a href="eliminar.php?id=<?php echo $fila['id'];?>"><img src="img/eliminar.png" width="15px"> Eliminar</a>
+					<?php }?>
 				</td>
 			<tr>
 			<?php
@@ -90,9 +97,12 @@ $resultado=$con->query($sql);
 	</tr>
 </table>
 </center>
-<ul >
-	<li><a href="forminsertar.html">Insertar Persona</a></li>
+<ul>
 
+	<?php if ($_SESSION['nivel']==1)
+	{?>
+	<li><a href="forminsertar.php">Insertar Persona</a></li>
+	<?php } ?>
 </ul>
 </body>
 </html>

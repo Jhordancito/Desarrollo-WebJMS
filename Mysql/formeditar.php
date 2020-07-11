@@ -1,10 +1,13 @@
-<?php include("conexion.php");
+<?php include ("comprobar.php"); 
+include("conexion.php");
 $id=$_GET['id'];
-$sql="select id,nombre,apellidos,edad,sexo,celular,estado,fecha from persona where id=".$id;
+$sql= "select id,fotografia,nombre,apellidos,edad,sexo,idprocedencia,celular,estado,fecha from persona where id=".$id;
 //echo $sql;   //Imprimimos para ver si esta bien
 $resultado=$con->query($sql);
 $fila=$resultado->fetch_assoc();
-echo $id;
+//echo $id;
+$sql= "select id,procedencia FROM procedencia"; 
+$procedencias=$con->query($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +15,10 @@ echo $id;
 	<title>InsertarDatos</title>
 </head>
 <body>
-	<form action="editar.php" method="POST" >
+	<form action="editar.php" method="POST" enctype="multipart/form-data">
+	<img src="img/<?php echo $fila['fotografia'];?>" width="60px">
+	<label for="imgfotografia">Fotografia:</label>
+	<input type="file" name="imgfotografia"><br> 
 	<label for="txtNombre">Nombre:</label>
 	<input type="text" name="txtNombre" value="<?php echo $fila['nombre'];?>"><br>
 	<label for="txtApellido">Apellido:</label>
@@ -22,6 +28,19 @@ echo $id;
 	<label for="txtSexo">Sexo:</label>
 	<input type="radio" name="txtSexo" value="M" <?php if ($fila['sexo']=='M') echo "checked" ;?>>Masculino
 	<input type="radio" name="txtSexo" value="F" <?php if ($fila['sexo']=='F') echo "checked" ;?>>Femenino<br>
+	<label for="selProcedencia">Procedencia:</label>
+	<select name="selProcedencia">
+		<?php
+			while ($fila2=$procedencias->fetch_assoc())
+			{
+				?>
+		<option value="<?php echo $fila2['id']; ?>"
+			<?php if($fila2['id']==$fila['idprocedencia']) echo "selected";?>
+			> <?php echo $fila2['procedencia'];?></option>
+		<?php 
+		}
+		?>
+	</select><br>
 	<label for="txtCelular">Celular:</label>
 	<input type="number" name="numCelular" value="<?php echo $fila['celular'];?>"><br>
 	<label for="selEstado">Estado de Salud (COVID-19) :</label>
@@ -35,6 +54,7 @@ echo $id;
 	<label for="fecRegistro">Fecha de Registro: </label>
 	<input type="date" name="fecRegistro" value="<?php echo $fila['fecha']; ?>"><br><br>
 	<input type="hidden" name="id" value="<?php echo $id;?>">
+	<input type="hidden" name="fotografia" value="<?php echo $fila['fotografia'];?>">
 	<input type="submit" value="Registrar">
 
 </form>

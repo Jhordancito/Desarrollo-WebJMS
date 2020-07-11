@@ -1,6 +1,6 @@
 <?php session_start();
 $correo=str_replace("'","",$_POST['txtCorreo']);
-$password=sha1(str_replace("'","",$$_POST['txtPassword']);
+$password=sha1(str_replace("'","",$$_POST['txtPassword']));
 include('conexion.php');
 $sql="select correo,nivel from usuarios where correo='$correo' and password='$password'";
 echo $sql;
