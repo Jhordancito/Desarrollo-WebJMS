@@ -13,7 +13,7 @@
 			height: 50%
 		}
 		.th{
-			background-color: blue; 
+			background-color: yellow; 
 		}	
 		.td{
 			object-position: center;
@@ -25,7 +25,18 @@
 </head>
 <body>
 <?php include("conexion.php");
-$sql="select persona.id,fotografia,nombre,apellidos,edad,sexo,procedencia,celular,estado,fecha          from persona left join procedencia on persona.idprocedencia=procedencia.id";
+$orden=$_GET['orden'];
+$forma=$_GET['forma'];
+if(!isset($_GET['orden']))
+{
+	$orden="id";
+	$forma="";
+}
+$sql="select persona.id,fotografia,nombre,apellidos,edad,sexo,procedencia,celular,estado,fecha          from persona left join procedencia on persona.idprocedencia=procedencia.id order by ".$orden."".$forma;
+if($forma=="")
+	$forma="desc";
+	else
+	$forma="";
 //echo $sql;   //Imprimimos para ver si esta bien
 echo "Usted esta Auntenticado como ".$_SESSION['correo'];
 $resultado=$con->query($sql);
@@ -37,14 +48,14 @@ $resultado=$con->query($sql);
 <center>
 <table class="tabla" border="1px">
 	<th class="th">Fotografia</th>
-	<th class="th">Nombres</th>
-	<th class="th">Apellidos</th>
-	<th class="th">Edad</th>
-	<th class="th">Sexo</th>
-	<th class="th">Celular</th>
-	<th class="th">Procedencia</th>
-	<th class="th">Estado</th>
-	<th class="th">Fecha</th>
+	<th class="th"><a href="listar.php?orden=nombre&forma=<?php if ($orden=="nombre") echo $forma;?>"> Nombres</th></a>
+	<th class="th"><a href="listar.php?orden=apellidos&forma=<?php if ($orden=="apellidos") echo $forma;?>">Apellidos</th></a>
+	<th class="th"><a href="listar.php?orden=edad&forma=<?php if ($orden=="edad") echo $forma;?>">Edad</th></a>
+	<th class="th"><a href="listar.php?orden=sexo&forma=<?php if ($orden=="sexo") echo $forma;?>">Sexo</th></a>
+	<th class="th"><a href="listar.php?orden=celular&forma=<?php if ($orden=="celular") echo $forma;?>">Celular</th></a>
+	<th class="th"><a href="listar.php?orden=procedencia&forma=<?php if ($orden=="procedencia") echo $forma;?>">Procedencia</th></a>
+	<th class="th"><a href="listar.php?orden=estado&forma=<?php if ($orden=="estado") echo $forma;?>">Estado</th></a>
+	<th class="th"><a href="listar.php?orden=fecha&forma=<?php if ($orden=="fecha") echo $forma;?>">Fecha</th></a>
 	<th class="th">Operaciones</th>
 	<tr>
 		<?php
